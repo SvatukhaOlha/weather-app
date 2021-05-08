@@ -4,10 +4,16 @@ window.addEventListener('load', () => {
     let temperatureDescription = document.querySelector('.temperature-description');
     let temperatureDegree = document.querySelector('.temperature-degree');
     let locationTimeZone = document.querySelector('.location-timezone');
-    let iconImg = document.querySelector('.icon');
     let temperatureSection = document.querySelector('.temperature-section');
     let temperatureSpan = document.querySelector('.temperature-section span');
+    let location = document.querySelector('.location');
     
+    let iconEl = document.createElement('img');
+    iconEl.classList.add('icon');
+    location.appendChild(iconEl);
+
+
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
             //console.log(position);
@@ -30,30 +36,26 @@ window.addEventListener('load', () => {
                     temperatureDegree.textContent = temp_c;
                     locationTimeZone.textContent = country;
                     temperatureDescription.textContent = text;
-                    // iconImg.src = icon;
-                    // console.log(icon)
+                    iconEl.src = 'https://' + icon.slice(2);
+                    console.log(iconEl.src)
 
                     //Change temperature to Celsium/Fahrenheit
                     temperatureSection.addEventListener('click', () => {
-                        if(temperatureSpan.textContent === 'F') {
+                        if (temperatureSpan.textContent === 'F') {
                             temperatureSpan.textContent = 'C';
                             temperatureDegree.textContent = temp_c;
-                        }else{
+                        } else {
                             temperatureSpan.textContent = 'F';
-                            temperatureDegree.textContent =  Math.floor(fahrenheit);
+                            temperatureDegree.textContent = Math.floor(fahrenheit);
                         }
                     });
 
                     // Formula for Fahrenheit
-                    let fahrenheit = (temp_c - 32)*(5/9) 
+                    let fahrenheit = (temp_c - 32) * (5 / 9)
                 })
-                // function setIcons(icon, code) {
-                //     const iconFromApi =  data.current.condition.icon;
-                //     console.log(iconFromApi)
-                // };
         });
 
-       
+
 
     }
 });

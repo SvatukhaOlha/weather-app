@@ -30,11 +30,11 @@ window.addEventListener('load', () => {
 
                     const { temp_c } = data.current;
                     const { icon, text } = data.current.condition;
-                    const { country, tz_id } = data.location;
+                    const { tz_id } = data.location;
 
                     // Set DOM Elements from the API
                     temperatureDegree.textContent = temp_c;
-                    locationTimeZone.textContent = country;
+                    locationTimeZone.textContent = tz_id;
                     temperatureDescription.textContent = text;
                     iconEl.src = 'https://' + icon.slice(2);
                     console.log(iconEl.src)
